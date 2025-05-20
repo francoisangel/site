@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+@media (hover: hover) {
+  html {
+    /* cursor: none !important; */
+  }
+
+  /* Force cursor to be hidden on all interactive elements */
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    /* cursor: none !important; */
+  }
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: #1f2937;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f8f7f4;
+}
+
+/* Typography adjustments */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+p {
+  line-height: 1.7;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Custom scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom container padding */
+.container {
+  padding-left: max(4vw, 1rem);
+  padding-right: max(4vw, 1rem);
+}
+
+/* Custom aspect ratios */
+.aspect-portrait {
+  aspect-ratio: 2/3;
+}
+
+.aspect-landscape {
+  aspect-ratio: 16/9;
+}
+
+/* Image hover effects */
+.hover-zoom {
+  @apply transition-transform duration-700;
+}
+
+.hover-zoom:hover {
+  transform: scale(1.05);
+}
+
+/* Custom borders */
+.border-diagonal {
+  position: relative;
+}
+
+.border-diagonal::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 2rem;
+  height: 2rem;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+}
+
+.border-diagonal::before {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  width: 2rem;
+  height: 2rem;
+  border-bottom: 1px solid currentColor;
+  border-left: 1px solid currentColor;
+}
+
+/* Custom grid layouts */
+.grid-masonry {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: 300px;
+  grid-auto-flow: dense;
+  gap: 2rem;
+}
+
+.grid-masonry > div:nth-child(4n + 1) {
+  grid-row: span 2;
+}
+
+.grid-masonry > div:nth-child(6n + 1) {
+  grid-column: span 2;
+}
+
+/* Custom transitions */
+.transition-slow {
+  transition-duration: 700ms;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8f7f4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
