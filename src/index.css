@@ -5,7 +5,7 @@
 /* Base styles */
 @media (hover: hover) {
   html {
-    /* cursor: none !important; */
+    cursor: none !important;
   }
 
   /* Force cursor to be hidden on all interactive elements */
@@ -14,7 +14,7 @@
   input,
   textarea,
   select {
-    /* cursor: none !important; */
+    cursor: none !important;
   }
 }
 
