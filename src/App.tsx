@@ -13,7 +13,12 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import { TranslationProvider } from "./components/TranslationProvider";
 import { trackPageView } from "./utils/analytics";
-
+const Studio = () => {
+  useEffect(() => {
+    window.location.href = "https://squareway.sanity.studio";
+  }, []);
+  return null;
+};
 // Analytics wrapper component
 const AnalyticsWrapper: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -40,6 +45,7 @@ const App: React.FC = () => {
               <Route path="/projects/:slug" element={<ProjectDetail />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/studio" element={<Studio />} />
             </Routes>
           </Layout>
         </AnalyticsWrapper>
