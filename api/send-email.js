@@ -24,7 +24,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         from: "noreply@square-way.com",
-        to: "minjem98@gmail.com",
+        to: "francoisangel.squareway@gmail.com",
         subject: "Nouveau lead",
         html,
       }),
