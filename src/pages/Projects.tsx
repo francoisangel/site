@@ -27,7 +27,8 @@ const Projects: React.FC = () => {
         client,
         status,
         team,
-        isFeatured
+        isFeatured,
+        hide
       }
     }
   `;
@@ -58,7 +59,10 @@ const Projects: React.FC = () => {
         </div>
       </div>
 
-      <ProjectGrid projects={projectsPageContent.projects} lng={language} />
+      <ProjectGrid
+        projects={projectsPageContent?.projects?.filter((proj) => !proj?.hide)}
+        lng={language}
+      />
 
       <section className="py-16 bg-[#F8F7F4]">
         <div className="container mx-auto px-4">
