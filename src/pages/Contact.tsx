@@ -60,7 +60,7 @@ const Contact: React.FC = () => {
                   </p>
                 </div>
 
-                <ContactForm />
+                <ContactForm lng={currentLanguage} />
               </div>
 
               <div className="lg:pl-10">

@@ -2,8 +2,21 @@ import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "../../translations";
 import { trackFormSubmission } from "../../utils/analytics";
+import { useResendContactForm } from "../../hooks/useResendContactForm";
 
-const ContactForm: React.FC = () => {
+const formSubmitMessages = {
+  success: {
+    en: "Your message has been sent successfully!",
+    pt: "Sua mensagem foi enviada com sucesso!",
+    fr: "Votre message a été envoyé avec succès!",
+  },
+  error: {
+    en: "There was an error sending your message. Please try again later.",
+    pt: "Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.",
+    fr: "Une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer plus tard.",
+  },
+};
+const ContactForm: React.FC = ({ lng }) => {
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
@@ -12,9 +25,28 @@ const ContactForm: React.FC = () => {
     message: "",
   });
 
-  const [submitting, setSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
+
+  const { submitForm, loading } = useResendContactForm({
+    onSuccess: () => {
+      setSubmitSuccess(true);
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setSubmitSuccess(false);
+      }, 5000);
+    },
+    onError: (errorMessage) => {
+      setSubmitError(errorMessage);
+    },
+  });
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -28,28 +60,13 @@ const ContactForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitting(true);
     setSubmitError("");
 
     // Track form submission
     trackFormSubmission("Contact Form");
 
-    // Simulate form submission
-    setTimeout(() => {
-      setSubmitting(false);
-      setSubmitSuccess(true);
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setSubmitSuccess(false);
-      }, 5000);
-    }, 1500);
+    // Submit the form using the hook
+    submitForm(formData);
   };
 
   return (
@@ -129,11 +146,11 @@ const ContactForm: React.FC = () => {
       <div>
         <button
           type="submit"
-          disabled={submitting}
+          disabled={loading}
           className="w-full bg-gray-900 text-white py-4 px-6 hover:bg-gray-800 transition-colors relative group overflow-hidden"
         >
           <span className="relative z-10 inline-flex items-center">
-            {submitting ? t("common.sending") : t("common.sendMessage")}
+            {loading ? t("common.sending") : t("common.sendMessage")}
             <ArrowRight
               size={18}
               className="ml-2 transform group-hover:translate-x-1 transition-transform"
@@ -145,13 +162,13 @@ const ContactForm: React.FC = () => {
 
       {submitSuccess && (
         <div className="p-4 bg-[#F8F7F4] text-gray-900 border-l-4 border-gray-900">
-          {t("contact.form.success")}
+          {formSubmitMessages.success[lng]}
         </div>
       )}
 
       {submitError && (
         <div className="p-4 bg-red-50 text-red-800 border border-red-200">
-          {submitError}
+          {formSubmitMessages.error[lng]}
         </div>
       )}
     </form>
