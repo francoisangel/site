@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
               {t('footer.tagline')}
             </p>
             <p className="text-gray-600">
-              Rua das Praças 55-4<br />
+              Rua Jorge Alves 28, Loja, 1299-783<br />
               Lisbon, Portugal
             </p>
           </div>
