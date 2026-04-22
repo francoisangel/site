@@ -1,9 +1,79 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import QuoteSection from "../components/shared/QuoteSection";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { Link } from "../components/ui/Link";
 import { useTranslation } from "../translations";
 import { useFetch } from "../hooks/useFetch";
+import ArticleModal, { useArticlePrefetch } from "../components/ui/ArticleModal";
+
+const ArticleSection: React.FC = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const modalWidth = useArticlePrefetch(sectionRef);
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <section ref={sectionRef} className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+
+              {/* Left */}
+              <div className="lg:col-span-4 flex flex-col gap-6">
+                <div>
+                  <p className="text-xs tracking-widest uppercase text-gray-400 mb-2">{t('about.article.label')}</p>
+                  <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 leading-tight mb-4">
+                    {t('about.article.title')}
+                  </h2>
+                  <p
+                    className="text-base text-gray-600 leading-relaxed mb-4"
+                    dangerouslySetInnerHTML={{ __html: t('about.article.description') }}
+                  />
+                  <a
+                    href="https://lisboetemagazine.com/immobilier/renover-a-lisbonne-conseils-expert-square-way/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors group"
+                  >
+                    <span className="border-b border-gray-300 group-hover:border-gray-900 transition-colors leading-tight">
+                      {t('about.article.magazineLink')}
+                    </span>
+                    <ExternalLink size={13} className="shrink-0" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Right: intro card */}
+              <div className="lg:col-span-8">
+                <div className="relative bg-[#F8F7F4] p-8 md:p-10">
+                  <div className="absolute top-0 right-0 w-14 h-14 border-t-2 border-r-2 border-gray-900"></div>
+                  <div className="absolute bottom-0 left-0 w-14 h-14 border-b-2 border-l-2 border-gray-900"></div>
+                  <p className="text-base md:text-lg text-gray-700 leading-relaxed font-light">
+                    {t('about.article.excerpt')}
+                  </p>
+                </div>
+                <div className="mt-6">
+                  <button
+                    onClick={() => setModalOpen(true)}
+                    className="inline-flex items-center gap-2 px-7 py-3 bg-gray-900 text-white text-sm font-medium group relative overflow-hidden"
+                  >
+                    <span className="relative z-10">{t('about.article.cta')}</span>
+                    <ArrowRight size={15} className="relative z-10 transform group-hover:translate-x-1 transition-transform" />
+                    <div className="absolute inset-0 bg-gray-700 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {modalOpen && <ArticleModal onClose={() => setModalOpen(false)} containerWidth={modalWidth} />}
+    </>
+  );
+};
 
 const About: React.FC = () => {
   const { t, language } = useTranslation();
@@ -191,6 +261,8 @@ const About: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <ArticleSection />
 
       <QuoteSection quote={aboutPageContent.quote[currentLanguage]} />
     </div>

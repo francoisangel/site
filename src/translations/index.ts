@@ -112,6 +112,14 @@ interface Translations {
   about: {
     title: string;
     subtitle: string;
+    article: {
+      label: string;
+      title: string;
+      description: string;
+      excerpt: string;
+      cta: string;
+      magazineLink: string;
+    };
     founder: {
       title: string;
       subtitle: string;
@@ -296,6 +304,14 @@ export const translations: Record<Language, Translations> = {
     about: {
       title: 'About Us',
       subtitle: 'Specializing in tailored investment solutions, architectural design, and construction supervision in Lisbon, bringing Swiss precision to the Portuguese market.',
+      article: {
+        label: 'Lisboète Magazine — Spring 2026',
+        title: "The Expert's Perspective",
+        description: 'Square Way is featured in <em>Lisboète Magazine</em>, in an article dedicated to the specificities of renovation in Lisbon.',
+        excerpt: 'Renovating in Lisbon is not merely a question of "before and after". It means entering an existing structure, understanding its construction logic and regulatory constraints, in order to reveal its full potential without betraying its identity.',
+        cta: 'Read the full article',
+        magazineLink: 'Link to Lisboète Magazine'
+      },
       founder: {
         title: 'François Angel - Founder',
         subtitle: 'Swiss Architect & Investment Specialist',
@@ -478,6 +494,14 @@ export const translations: Record<Language, Translations> = {
     about: {
       title: 'Sobre Nós',
       subtitle: 'Especialistas em soluções de investimento personalizadas, design arquitetônico e supervisão de construção em Lisboa, trazendo a precisão suíça para o mercado português.',
+      article: {
+        label: 'Lisboète Magazine — Primavera 2026',
+        title: 'A Perspetiva do Especialista',
+        description: 'A Square Way é destacada na <em>Lisboète Magazine</em>, num artigo dedicado às especificidades da renovação em Lisboa.',
+        excerpt: 'Renovar em Lisboa não é apenas uma questão de "antes e depois". É entrar numa estrutura já existente, compreender a sua lógica construtiva e os condicionamentos regulamentares, de forma a revelar todo o seu potencial, sem trair a sua identidade.',
+        cta: 'Ler o artigo completo',
+        magazineLink: 'Ligação para a Lisboète Magazine'
+      },
       founder: {
         title: 'François Angel - Fundador',
         subtitle: 'Arquiteto Suíço & Especialista em Investimentos',
@@ -660,6 +684,14 @@ export const translations: Record<Language, Translations> = {
     about: {
       title: 'À Propos',
       subtitle: 'Spécialisés dans les solutions d\'investissement sur mesure, le design architectural et la supervision de construction à Lisbonne, apportant la précision suisse au marché portugais.',
+      article: {
+        label: 'Lisboète Magazine — Printemps 2026',
+        title: "Le point de vue de l'expert",
+        description: 'Square Way est mis en lumière dans <em>Lisboète Magazine</em>, à travers un article dédié aux spécificités de la rénovation à Lisbonne.',
+        excerpt: "Rénover à Lisbonne n'est pas uniquement une question « d'avant/après ». C'est entrer dans une structure déjà existante, en comprendre la logique de construction et les contraintes réglementaires, afin de révéler tout son potentiel, sans trahir son identité.",
+        cta: "Lire l'article complet",
+        magazineLink: 'Lien vers Lisboète Magazine'
+      },
       founder: {
         title: 'François Angel - Fondateur',
         subtitle: 'Architecte Suisse & Spécialiste en Investissement',
