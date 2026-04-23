@@ -11,10 +11,10 @@ const Contact: React.FC = () => {
   const currentLanguage = language;
   const address =
     language === "pt"
-      ? "Rua Jorge Alves 28, Loja"
+      ? "Rua Jorge Alves 28, Loja D"
       : language === "fr"
-      ? "Rua Jorge Alves 28, Loja"
-      : "Rua Jorge Alves 28, Loja";
+      ? "Rua Jorge Alves 28, Loja D"
+      : "Rua Jorge Alves 28, Loja D";
 
   const query = `
     *[_type == "contactUs"]
@@ -117,7 +117,7 @@ const Contact: React.FC = () => {
 
                 <div className="aspect-[4/3] relative">
                   <div className="absolute inset-0 z-10">
-                    <GoogleMap address="Rua Jorge Alves 28, Loja, 1299-783 Lisbon, Portugal" />
+                    <GoogleMap address="Rua Jorge Alves 28, Loja D, 1299-783 Lisbon, Portugal" />
                   </div>
                   <div className="absolute inset-0 border-2 border-gray-900 transform translate-x-4 translate-y-4"></div>
                 </div>
